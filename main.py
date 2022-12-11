@@ -16,10 +16,13 @@ async def on_message(message):
 
     username = str(message.author)
     channel = str(message.channel)
-    file1 = open('ChatHistory.txt', 'a')
-    file1.write(f'{username} sent: "{sent_content}" in {channel} \n')
-    file1.close()
-    print(f'{username} sent: "{sent_content}" in {channel}')
+    msg_time = str(message.created_at)
 
+    chat_log = open(f'{channel}.txt', 'a+')
+    chat_log.write(f'{username} sent: "{sent_content}" at {msg_time} \n')
+    chat_log.close()
+
+    print(f'{username} sent: "{sent_content}" at {msg_time}')
+    
 # add discord bot token 
 client.run()
